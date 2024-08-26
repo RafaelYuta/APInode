@@ -4,7 +4,13 @@ const { default: axios } = require('axios');
 const cepRegex = /^[0-9]{5}-?[0-9]{3}$/;
 
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
+
+app.use(express.json());
+app.use('/api', rotas)
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, ()=> console.log(`Servidor rodando na porta ${PORT}`))
 
 app.get('/', (req, res) => {
     res.send('Hello world');
