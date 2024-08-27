@@ -2,6 +2,7 @@ const express = require('express');
 const axio = require('axios');
 const { default: axios } = require('axios');
 const cepRegex = /^[0-9]{5}-?[0-9]{3}$/;
+const rotas = require('./routes')
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -9,8 +10,8 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use('/api', rotas)
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, ()=> console.log(`Servidor rodando na porta ${PORT}`))
+app.listen(PORT, ()=> console.log(`Servidor rodando em http://localhost:${PORT}`));
+
 
 app.get('/', (req, res) => {
     res.send('Hello world');
@@ -36,7 +37,3 @@ app.get('/consulta-cep/:cep', async (req, res) => {
     }
 });
 
-
-app.listen(port, () => {
-    console.log(`Servidor rodando em http://localhost:${port}`);
-});
