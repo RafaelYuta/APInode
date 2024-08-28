@@ -85,3 +85,19 @@ exports.deleteEndereco = async (req, res) => {
         res.status(500).json({ error: 'Erro ao deletar endereço', details: error.message });
     }
 };
+
+app.get('/salvar-cep/:cep', async (req, res) => {
+    const cep = req.params.cep;
+
+    if(!cepRegex.test(cep)){
+        res.send('Erro ao colocar o cep')
+    } else {
+        try {
+            const response = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+            res.json(response.data);
+        }catch(error){
+            console.error('Erro ao fazer requisição',error);
+            res.status(500).send('Erro ao consultar o CEP')
+        }
+    }
+});

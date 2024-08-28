@@ -1,3 +1,5 @@
+const {Sequelize} = require('sequelize')
+
 module.exports = {
     dialect: 'postgres',
     host: 'localhost',
@@ -9,3 +11,8 @@ module.exports = {
         underscored: true
     }
 }
+
+const sequelize = new Sequelize('database', 'username','password',{
+    host: 'localhost',
+    dialect: 'postgres',
+});
